@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Great Number Game</title>
+</head>
+<body>
+    <div class="p-3 text-center">
+        <div class="container">
+            <h1>Welcome to the Great Number Game!</h1>
+            <p>I am thinking of a number between 1 and 100</p>
+            <div>
+                <div class="box {{ info['css_class'] }}">
+                    <h2 class="mx-2">{{ info['message'] }}</h2>
+                    
+                </div>
+                <p> You have try {{ session["num_guesses"] }} guesses!</p>
+            </div>
+
+            <div class="mt-3">
+              {% if session['guess'] == session['random_number'] or session["num_guesses"] > 4 %}
+                <a href="/reset" class="button button-primary">Play Again</a>
+              {% else %}
+                <form action="/process" method="post">
+                  <input type="number" name="guess" placeholder="1-100">
+                  <button type="submit" class="button btn-primary">Guess!</button>
+                </form>
+              {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
