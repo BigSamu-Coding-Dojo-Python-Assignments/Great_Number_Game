@@ -8,7 +8,6 @@ app.secret_key = "gef24lg4&$JHB:>1754/KDh21uyf"
 def index():
     if "random_number" not in session:
         session['random_number'] = random.randint(1, 100)
-        print(session['random_number'])
     if "num_guesses" not in session:
         session['num_guesses'] = 0
 
